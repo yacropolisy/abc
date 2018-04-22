@@ -36,34 +36,34 @@ int main(){
   int a[n], b[n], c[n];
   REP(i,n)cin >> a[i] >> b[i] >> c[i];
 
-  int dp[41][401][401];
+  static int dp[41][401][401];
   REP(k,41)REP(i,401)REP(j,401)dp[k][i][j] = INFi;
 
-  // REP(k,n)dp[k][0][0] = 0;
+  REP(k,n)dp[k][0][0] = 0;
 
-  // REP(k,n){
-  //   REP(i,401){
-  //     REP(j,401){
-  //       if(i >= a[k] && j >= b[k]){
-  //         dp[k+1][i][j] = min(dp[k][i-a[k]][j-b[k]] + c[k], dp[k][i][j]);
-  //       }else{
-  //         dp[k+1][i][j] = dp[k][i][j];
-  //       }
-  //     }
-  //   }
-  // }
-  //
-  // int ans = INFi;
-  // for(int i = 1; i * (max(ma,mb)) <= 400; i++ ){
-  //   // if( dp[n][i*ma][i*mb]!= INFi)cout << "i " << i << endl;
-  //   ans = min(ans, dp[n][i*ma][i*mb]);
-  // }
-  //
-  // if(ans == INFi){
-  //   cout << -1 << endl;
-  // }else{
-  //   cout << ans << endl;
-  // }
+  REP(k,n){
+    REP(i,401){
+      REP(j,401){
+        if(i >= a[k] && j >= b[k]){
+          dp[k+1][i][j] = min(dp[k][i-a[k]][j-b[k]] + c[k], dp[k][i][j]);
+        }else{
+          dp[k+1][i][j] = dp[k][i][j];
+        }
+      }
+    }
+  }
+
+  int ans = INFi;
+  for(int i = 1; i * (max(ma,mb)) <= 400; i++ ){
+    // if( dp[n][i*ma][i*mb]!= INFi)cout << "i " << i << endl;
+    ans = min(ans, dp[n][i*ma][i*mb]);
+  }
+
+  if(ans == INFi){
+    cout << -1 << endl;
+  }else{
+    cout << ans << endl;
+  }
 
   return 0;
 }
