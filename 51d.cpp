@@ -30,6 +30,9 @@ ll MOD = 1000000007;
 
 const int MAX_V = 100;
 
+ll cost[MAX_V][MAX_V];
+
+
 struct edge{int to; ll cost; bool used;};
 typedef pair<ll, int> P;
 
